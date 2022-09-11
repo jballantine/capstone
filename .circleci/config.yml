@@ -49,3 +49,6 @@ workflows:
     final:
         jobs:
             - build
+            - push-docker-image:
+                  requires:
+                      - build
