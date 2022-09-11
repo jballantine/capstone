@@ -33,10 +33,13 @@ jobs:
                       
     push-image:
         docker:
-            - image: amazon/aws-cli
+            - image: python:3.7.3-stretch
         working_directory: ~/repo
         steps:
             - checkout
+            - run:
+                name: Install docker
+                command: pip install awscli
             - run:
                 name: Push image to docker
                 command: |
