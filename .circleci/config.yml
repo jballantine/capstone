@@ -49,6 +49,6 @@ workflows:
     final:
         jobs:
             #- build
-            - push-image:
+            - push-image
             #      requires:
             #          - build
