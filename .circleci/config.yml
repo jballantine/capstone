@@ -33,7 +33,7 @@ jobs:
                       
     push-image:
         docker:
-            - image: python:3.7.3-stretch
+            - image: amazon/aws-cli
         working_directory: ~/repo
         steps:
             - checkout
@@ -48,7 +48,7 @@ jobs:
 workflows:
     final:
         jobs:
-            - build
+            #- build
             - push-image:
-                  requires:
-                      - build
+            #      requires:
+            #          - build
