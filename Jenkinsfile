@@ -13,17 +13,14 @@ pipeline {
             
             stage('Build Image') {
                 steps {
-                        sh './run_docker.sh capstone'
+                        sh './scripts/run_docker.sh capstone'
                 }
             }
             
             stage('Push Image') {
                 steps {
                     withCredentials([usernamePassword(credentialsId: 'dockerHub', usernameVariable: 'UNAME', passwordVariable: 'PWD')]) {
-                        sh '''
-                        echo Skipping
-                        # ./upload_docker.sh capstone $UNAME $PWD
-                        '''
+                        sh './scripts/upload_docker.sh capstone $UNAME $PWD'
                     }
                 }
             }
@@ -54,7 +51,7 @@ pipeline {
                 steps {
                     withAWS(region: 'us-east-1', credentials: 'aws-credentials') {
                         sh '''
-                        ./installKube.sh && export PATH=$PATH:$HOME/bin
+                        ./scripts/installKube.sh && export PATH=$PATH:$HOME/bin
                         kubectl config use-context arn:aws:eks:us-east-1:036467374758:cluster/capstone
                         '''
                     }
@@ -65,8 +62,8 @@ pipeline {
                 steps {
                     withAWS(region: 'us-east-1', credentials: 'aws-credentials') {
                         sh '''
-                        ./installKube.sh && export PATH=$PATH:$HOME/bin
-                        kubectl apply -f ./blue-controller.json
+                        ./scripts/installKube.sh && export PATH=$PATH:$HOME/bin
+                        kubectl apply -f ./k8s/blue-controller.json
                         '''
                     }
                 }
@@ -76,8 +73,8 @@ pipeline {
                 steps {
                     withAWS(region: 'us-east-1', credentials: 'aws-credentials') {
                         sh '''
-                        ./installKube.sh && export PATH=$PATH:$HOME/bin
-                        kubectl apply -f ./green-controller.json
+                        ./scripts/installKube.sh && export PATH=$PATH:$HOME/bin
+                        kubectl apply -f ./k8s/green-controller.json
                         '''
                     }
                 }
@@ -87,8 +84,8 @@ pipeline {
                 steps {
                     withAWS(region: 'us-east-1', credentials: 'aws-credentials') {
                         sh '''
-                        ./installKube.sh && export PATH=$PATH:$HOME/bin
-                        kubectl apply -f ./blue-service.json
+                        ./scripts/installKube.sh && export PATH=$PATH:$HOME/bin
+                        kubectl apply -f ./k8s/blue-service.json
                         '''
                     }
                 }
@@ -98,8 +95,8 @@ pipeline {
                 steps {
                     withAWS(region: 'us-east-1', credentials: 'aws-credentials') {
                         sh '''
-                        ./installKube.sh && export PATH=$PATH:$HOME/bin
-                        kubectl apply -f ./green-service.json
+                        ./scripts/installKube.sh && export PATH=$PATH:$HOME/bin
+                        kubectl apply -f ./k8s/green-service.json
                         ''' 
                     }
                 }
