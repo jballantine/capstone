@@ -8,11 +8,6 @@ pipeline {
                     echo "Linting html"
                     sh "/bin/tidy -q -e *.html"
                 }
-                post {
-                    always {
-                        archiveArtifacts "hadolint_lint.txt"
-                    }
-                }
             }	
         }
 }
