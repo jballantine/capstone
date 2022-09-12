@@ -8,13 +8,13 @@ pipeline {
                     sh "hadolint Dockerfile"
                     echo "Linting html"
                     sh "tidy -q -e index.html"
-                    sh "echo $USER"
                 }
             }
             
             stage('Build Image') {
                 steps {
                     withCredentials([usernamePassword(credentialsId: 'dockerHub', usernameVariable: 'UNAME', passwordVariable: 'PWD')]) {
+                        sh "docker images"
                         sh "./run_docker.sh capstone"
                     }
                 }
