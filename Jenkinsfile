@@ -4,16 +4,16 @@ pipeline {
         
             stage('Linting') {
                 steps {
-                    echo "Linting Dockerfile"
-                    sh "hadolint Dockerfile"
-                    echo "Linting html"
-                    sh "tidy -q -e index.html"
+                    echo 'Linting Dockerfile'
+                    sh 'hadolint Dockerfile'
+                    echo 'Linting html'
+                    sh 'tidy -q -e index.html'
                 }
             }
             
             stage('Build Image') {
                 steps {
-                        sh "./run_docker.sh capstone"
+                        sh './run_docker.sh capstone'
                 }
             }
             
@@ -32,7 +32,6 @@ pipeline {
                 steps {
                     withAWS(region: 'us-east-1', credentials: 'aws-credentials', roleAccount:'036467374758', role:'jenkins') {
                         sh '''
-                        aws s3 ls
                         kubectl get nodes
                         kubectl get all
                         # kubectl config use-context arn:aws:eks:us-east-1:036467374758:cluster/capstone
@@ -44,7 +43,7 @@ pipeline {
             stage ('Deploy blue container') {
                 steps {
                     withAWS(region: 'us-east-1', credentials: 'aws-credentials') {
-                        sh "kubectl apply -f ./blue-controller.json"
+                        sh 'kubectl apply -f ./blue-controller.json'
                     }
                 }
             }
@@ -52,7 +51,7 @@ pipeline {
             stage ('Deploy green container') {
                 steps {
                     withAWS(region: 'us-east-1', credentials: 'aws-credentials') {
-                        sh "kubectl apply -f ./green-controller.json" 
+                        sh 'kubectl apply -f ./green-controller.json' 
                     }
                 }
             }
@@ -60,7 +59,7 @@ pipeline {
             stage ('Run blue service') {
                 steps {
                     withAWS(region: 'us-east-1', credentials: 'aws-credentials') {
-                        sh "kubectl apply -f ./blue-service.json" 
+                        sh 'kubectl apply -f ./blue-service.json' 
                     }
                 }
             }
@@ -68,7 +67,7 @@ pipeline {
             stage ('Run green service') {
                 steps {
                     withAWS(region: 'us-east-1', credentials: 'aws-credentials') {
-                        sh "kubectl apply -f ./green-service.json" 
+                        sh 'kubectl apply -f ./green-service.json' 
                     }
                 }
             }
