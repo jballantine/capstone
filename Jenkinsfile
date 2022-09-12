@@ -30,8 +30,40 @@ pipeline {
             
             stage('Set K8s Context') {
                 steps {
-                    withAWS(region: 'us-east-1', credentials: 'Josh') {
+                    withAWS(region: 'us-east-1', credentials: 'aws-credentials') {
                         sh "kubectl config use-context arn:aws:eks:us-east-1:036467374758:cluster/capstone"
+                    }
+                }
+            }
+            
+            stage ('Deploy blue container') {
+                steps {
+                    withAWS(region: 'us-east-1', credentials: 'aws-credentials') {
+                        sh "kubectl apply -f ./blue-controller.json"
+                    }
+                }
+            }
+            
+            stage ('Deploy green container') {
+                steps {
+                    withAWS(region: 'us-east-1', credentials: 'aws-credentials') {
+                        sh "kubectl apply -f ./green-controller.json" 
+                    }
+                }
+            }
+            
+            stage ('Run blue service') {
+                steps {
+                    withAWS(region: 'us-east-1', credentials: 'aws-credentials') {
+                        sh "kubectl apply -f ./blue-service.json" 
+                    }
+                }
+            }
+            
+            stage ('Run green service') {
+                steps {
+                    withAWS(region: 'us-east-1', credentials: 'aws-credentials') {
+                        sh "kubectl apply -f ./green-service.json" 
                     }
                 }
             }
