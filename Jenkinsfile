@@ -6,7 +6,7 @@ pipeline {
                     echo "Linting Dockerfile"
                     sh "/bin/hadolint Dockerfile"
                     echo "Linting html"
-                    sh "/bin/tidy -q -e index.html"
+                    sh "tidy -q -e index.html"
                 }
             }	
         }
