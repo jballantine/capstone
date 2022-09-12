@@ -20,9 +20,7 @@ pipeline {
             stage('Push Image') {
                 steps {
                     withCredentials(bindings: [[$class: 'usernamePasswordMultiBinding', credentialsId: 'dockerHub', usernameVariable: 'UNAME', passwordVariable: 'PWD']]) {
-                        sh '''
-                        ./run_docker.sh capstone $UNAME $PWD
-                        '''
+                        sh "./upload_docker.sh capstone $UNAME $PWD"
                     }
                 }
             }
