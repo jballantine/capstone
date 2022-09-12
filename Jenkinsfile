@@ -28,20 +28,28 @@ pipeline {
                 }
             }
             
+            stage('Create cluster') {
+                steps {
+                    withAWS(region: 'us-east-1', credentials: 'aws-credentials') {
+                        sh 'eksctl create cluster --name capstone1 --region us-east-1 --nodegroup-name workers --node-type t2.small --nodes 2 --nodes-min 1 --nodes-max 3'
+                    }
+                }
+            }
+            
             stage('Set K8s Context') {
                 steps {
-                    withAWS(region: 'us-east-1', credentials: 'aws-credentials', roleAccount:'036467374758', role:'admin') {
+                    withAWS(region: 'us-east-1', credentials: 'aws-credentials') {
                         sh '''
                         curl -o kubectl https://s3.us-west-2.amazonaws.com/amazon-eks/1.23.7/2022-06-29/bin/linux/amd64/kubectl
                         chmod +x ./kubectl
                         mkdir -p $HOME/bin && cp ./kubectl $HOME/bin/kubectl && export PATH=$PATH:$HOME/bin
-                        aws eks --region "us-east-1" update-kubeconfig --name "capstone"
+                        aws eks --region "us-east-1" update-kubeconfig --name "capstone1"
                         kubectl version --short --client
                         aws sts get-caller-identity
                         aws --version
                         kubectl get nodes
                         kubectl get all
-                        # kubectl config use-context arn:aws:eks:us-east-1:036467374758:cluster/capstone
+                        # kubectl config use-context arn:aws:eks:us-east-1:036467374758:cluster/capstone1
                         '''
                     }
                 }
