@@ -21,7 +21,8 @@ pipeline {
                 steps {
                     withCredentials([usernamePassword(credentialsId: 'dockerHub', usernameVariable: 'UNAME', passwordVariable: 'PWD')]) {
                         sh '''
-                        ./upload_docker.sh capstone $UNAME $PWD
+                        echo Skipping
+                        //./upload_docker.sh capstone $UNAME $PWD
                         '''
                     }
                 }
