@@ -4,9 +4,9 @@ pipeline {
             stage('Linting') {
                 steps {
                     echo "Linting Dockerfile"
-                    sh '/bin/hadolint Dockerfile'
+                    sh "/bin/hadolint Dockerfile"
                     echo "Linting html"
-                    sh "tidy -q -e *.html"
+                    sh "/bin/tidy -q -e *.html"
                 }
                 post {
                     always {
