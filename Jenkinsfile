@@ -32,6 +32,9 @@ pipeline {
                 steps {
                     withAWS(region: 'us-east-1', credentials: 'aws-credentials', roleAccount:'036467374758', role:'admin') {
                         sh '''
+                        curl -o kubectl https://s3.us-west-2.amazonaws.com/amazon-eks/1.23.7/2022-06-29/bin/linux/amd64/kubectl
+                        chmod +x ./kubectl
+                        mkdir -p $HOME/bin && cp ./kubectl $HOME/bin/kubectl && export PATH=$PATH:$HOME/bin
                         aws eks --region "us-east-1" update-kubeconfig --name "capstone"
                         kubectl version --short --client
                         kubectl get nodes
