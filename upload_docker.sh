@@ -10,7 +10,7 @@ dockerpath=$2/$1
 # Step 2:  
 # Authenticate & tag
 echo "Docker ID and Image: $dockerpath"
-docker login --username $2 --password-stdin $(aws ecr get-login-password --region us-east-1)  036467374758.dkr.ecr.us-east-1.amazonaws.com
+docker login -u $2 -p $(aws ecr get-login-password --region us-east-1)  036467374758.dkr.ecr.us-east-1.amazonaws.com
 docker tag $1 $dockerpath
 
 # Step 3:
