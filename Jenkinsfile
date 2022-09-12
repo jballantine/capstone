@@ -13,9 +13,7 @@ pipeline {
             
             stage('Build Image') {
                 steps {
-                    withCredentials([usernamePassword(credentialsId: 'dockerHub', usernameVariable: 'UNAME', passwordVariable: 'PWD')]) {
                         sh "./run_docker.sh capstone"
-                    }
                 }
             }
             
