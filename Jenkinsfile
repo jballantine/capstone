@@ -3,6 +3,8 @@ pipeline {
         stages {
             stage('Linting') {
                 steps {
+                    echo "Linting Dockerfile"
+                    sh '/bin/hadolint Dockerfile'
                     echo "Linting html"
                     sh "tidy -q -e *.html"
                 }
