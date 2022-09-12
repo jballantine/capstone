@@ -30,7 +30,7 @@ pipeline {
             
             stage('Set K8s Context') {
                 steps {
-                    withAWS(region: 'us-east-1', credentials: 'aws-credentials', roleAccount:'036467374758', role:'jenkins') {
+                    withAWS(roleAccount:'036467374758', role:'jenkins') {
                         sh '''
                         kubectl get nodes
                         kubectl get all
