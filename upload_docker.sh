@@ -10,7 +10,7 @@ dockerpath=$2/$1
 # Step 2:  
 # Authenticate & tag
 echo "Docker ID and Image: $dockerpath"
-docker login -u $2 -p "i<3docker"
+docker login -u $2 -p $3
 docker tag $1 $dockerpath
 
 # Step 3:
