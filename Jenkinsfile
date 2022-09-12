@@ -19,7 +19,7 @@ pipeline {
             
             stage('Push Image') {
                 steps {
-                    withCredentials([usernamePassword(credentialsId: 'dockerHub', usernameVariable: 'UNAME', passwordVariable: 'PWD')]) {
+                    withCredentials(bindings: [[$class: 'usernamePasswordMultiBinding', credentialsId: 'dockerHub', usernameVariable: 'UNAME', passwordVariable: 'PWD']]) {
                         sh "./run_docker.sh capstone $UNAME $PWD"
                     }
                 }
