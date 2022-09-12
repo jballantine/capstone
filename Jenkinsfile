@@ -13,16 +13,16 @@ pipeline {
             
             stage('Build Image') {
                 steps {
-                    withCredentials([UsernamePassword(credentialsId: 'dockerHub', usernameVariable: 'UNAME', passwordVariable: 'PWD')]) {
-                        echo "Hi"
+                    withCredentials([usernamePassword(credentialsId: 'dockerHub', usernameVariable: 'UNAME', passwordVariable: 'PWD')]) {
+                        sh "./run_docker.sh capstone"
                     }
                 }
             }
             
             stage('Push Image') {
                 steps {
-                    withCredentials([UsernamePassword(credentialsId: 'dockerHub', usernameVariable: 'UNAME', passwordVariable: 'PWD')]) {
-                        echo "Hi"
+                    withCredentials([usernamePassword(credentialsId: 'dockerHub', usernameVariable: 'UNAME', passwordVariable: 'PWD')]) {
+                        sh "./run_docker.sh capstone $UNAME $PWD"
                     }
                 }
             }
