@@ -48,12 +48,12 @@ pipeline {
                     }
                 }
             }
-/*            
+            
             stage ('Deploy blue container') {
                 steps {
                     withAWS(region: 'us-east-1', credentials: 'aws-credentials') {
                         sh '''
-                        script {installKube ()}
+                        ./installKube.sh && export PATH=$PATH:$HOME/bin
                         kubectl apply -f ./blue-controller.json
                         '''
                     }
@@ -64,7 +64,7 @@ pipeline {
                 steps {
                     withAWS(region: 'us-east-1', credentials: 'aws-credentials') {
                         sh '''
-                        script {installKube ()}
+                        ./installKube.sh && export PATH=$PATH:$HOME/bin
                         kubectl apply -f ./green-controller.json
                         '''
                     }
@@ -75,7 +75,7 @@ pipeline {
                 steps {
                     withAWS(region: 'us-east-1', credentials: 'aws-credentials') {
                         sh '''
-                        script {installKube ()}
+                        ./installKube.sh && export PATH=$PATH:$HOME/bin
                         kubectl apply -f ./blue-service.json
                         '''
                     }
@@ -86,12 +86,12 @@ pipeline {
                 steps {
                     withAWS(region: 'us-east-1', credentials: 'aws-credentials') {
                         sh '''
-                        script {installKube ()}
+                        ./installKube.sh && export PATH=$PATH:$HOME/bin
                         kubectl apply -f ./green-service.json
                         ''' 
                     }
                 }
             }
-*/         
+        
         }
 }
