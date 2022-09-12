@@ -55,8 +55,6 @@ pipeline {
                     withAWS(region: 'us-east-1', credentials: 'aws-credentials') {
                         sh '''
                         ./installKube.sh && export PATH=$PATH:$HOME/bin
-                        kubectl get nodes
-                        kubectl get all
                         kubectl config use-context arn:aws:eks:us-east-1:036467374758:cluster/capstone
                         '''
                     }
