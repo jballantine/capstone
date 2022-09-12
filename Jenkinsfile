@@ -40,9 +40,7 @@ pipeline {
                 steps {
                     withAWS(region: 'us-east-1', credentials: 'aws-credentials') {
                         sh '''
-                        curl -o kubectl https://s3.us-west-2.amazonaws.com/amazon-eks/1.23.7/2022-06-29/bin/linux/amd64/kubectl
-                        chmod +x ./kubectl
-                        mkdir -p $HOME/bin && cp ./kubectl $HOME/bin/kubectl && export PATH=$PATH:$HOME/bin
+                        ./installKube.sh $HOME $PATH
                         kubectl get nodes
                         kubectl get all
                         kubectl config use-context arn:aws:eks:us-east-1:036467374758:cluster/capstone
