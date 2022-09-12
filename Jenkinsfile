@@ -51,7 +51,7 @@ pipeline {
                     }
                 }
             }
-/*            
+            
             stage ('Deploy blue container') {
                 steps {
                     withAWS(region: 'us-east-1', credentials: 'aws-credentials') {
@@ -83,6 +83,6 @@ pipeline {
                     }
                 }
             }
-*/            
+         
         }
 }
