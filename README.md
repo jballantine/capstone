@@ -67,3 +67,4 @@ These final steps create the necessary resources. The status of the pods, servic
 
 ![accessApp.png](screenshots/accessApp.png)
 
+
