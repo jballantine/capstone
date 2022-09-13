@@ -4,9 +4,8 @@ pipeline {
         
             stage('Linting') {
                 steps {
-                    sh 'hadolint k8s/green/Dockerfile'
-                    sh 'hadolint k8s/blue/Dockerfile'
-                    sh 'tidy -q -e index.html'
+                    sh 'hadolint k8s/green/Dockerfile k8s/blue/Dockerfile'
+                    sh 'tidy -q -e k8s/green/index.html k8s/blue/index.html'
                 }
             }
             
