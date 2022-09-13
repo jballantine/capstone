@@ -13,7 +13,7 @@
 
 ## Prerequisites
 
-All tools required for this project are listed below. I have also set up an [EC2 instance](screenshots/ec2Instance.jpg) which will host/communicate with these tools and essentially serve as the management centre for this project.
+All tools required for this project are listed below. I have also set up an [EC2 instance](screenshots/ec2Inst.jpg) which will host/communicate with these tools and essentially serve as the management centre for this project.
 - Jenkins (incl. Blue Ocean plugin)
 https://www.digitalocean.com/community/tutorials/how-to-install-jenkins-on-ubuntu-22-04
 - Docker
