@@ -24,7 +24,7 @@ pipeline {
                     }
                 }
             }
-            
+/*            
             stage('Create Cluster') {
                 steps {
                     withAWS(region: 'us-east-1', credentials: 'aws-credentials') {
@@ -46,7 +46,7 @@ pipeline {
                     }
                 }
             }
-            
+*/            
             stage('Set K8s Context') {
                 steps {
                     withAWS(region: 'us-east-1', credentials: 'aws-credentials') {
