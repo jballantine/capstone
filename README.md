@@ -35,7 +35,7 @@ https://stackoverflow.com/questions/62369711/how-to-install-hadolint-on-ubuntu
 
 ## Application Specification
 
-A simple Nginx "Hello World" application defined by [index.html](index.html). The webpage will have a blue or green background depending on how the load balancer is configured.
+A simple Nginx "Hello World" application defined [here](k8s/blue/index.html) and [here](k8s/green/index.html). The webpage will have a blue or green background depending on how the load balancer is configured.
 
 ## CI/CD Pipeline
 
