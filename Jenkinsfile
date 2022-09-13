@@ -48,7 +48,7 @@ pipeline {
                     }
                 }
             }
-            
+/*
             stage('Create Cluster') {
                 steps {
                     withAWS(region: 'us-east-1', credentials: 'aws-credentials') {
@@ -126,6 +126,6 @@ pipeline {
                     }
                 }
             }
-        
+*/
         }
 }

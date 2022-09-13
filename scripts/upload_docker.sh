@@ -11,8 +11,8 @@ dockerpath=$2/capstone
 # Authenticate & tag
 echo "Docker ID and Image: $dockerpath"
 docker login -u $2 -p $3
-docker tag $1 $dockerpath
+docker tag capstone:$1 $dockerpath:$1
 
 # Step 3:
 # Push image to a docker repository
-docker push $dockerpath
+docker push $dockerpath:$1
