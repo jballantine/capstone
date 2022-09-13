@@ -55,7 +55,7 @@ This is done by calling the [upload_docker.sh](scripts/upload_docker.sh) script 
 
 ### Stage 6 - Create Cluster
 
-Deploys the cluster using EKS and cloud formation. This stage (and the remaining stages) rely on aws [credential configuration](screenshots/jenkinsCreds.jpg) within jenkins. The cluster status is shown [here](eksCluster.jpg) and the status of the pods are shown [here](screenshots/k8Resources.jpg).
+Deploys the cluster using EKS and cloud formation. This stage (and the remaining stages) rely on aws [credential configuration](screenshots/jenkinsCreds.jpg) within jenkins. The cluster status is shown [here](screenshots/eksCluster.jpg) and the status of the pods are shown [here](screenshots/k8Resources.jpg).
 
 ### Stage 7 - Set K8s Context
 
