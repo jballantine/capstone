@@ -30,7 +30,7 @@ pipeline {
             stage('Push Blue Image') {
                 steps {
                     withCredentials([string(credentialsId: 'dockerCreds', variable: 'SECRET')]) {
-                        '''
+                        sh '''
                         cd k8s/blue
                         ./../../scripts/upload_docker.sh capstoneBlue jballantine1 $SECRET
                         '''
