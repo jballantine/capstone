@@ -5,7 +5,7 @@
 
 # Step 1:
 # Create dockerpath
-dockerpath=$2/$1
+dockerpath=$2/capstone
 
 # Step 2:  
 # Authenticate & tag

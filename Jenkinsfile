@@ -13,7 +13,7 @@ pipeline {
                 steps {
                     sh '''
                     cd k8s/blue
-                    ./../../scripts/run_docker.sh capstoneBlue
+                    ./../../scripts/run_docker.sh blue
                     '''
                 }
             }
@@ -22,7 +22,7 @@ pipeline {
                 steps {
                     sh '''
                     cd k8s/green
-                    ./../../scripts/run_docker.sh capstoneGreen
+                    ./../../scripts/run_docker.sh green
                     '''
                 }
             }
@@ -32,7 +32,7 @@ pipeline {
                     withCredentials([string(credentialsId: 'dockerCreds', variable: 'SECRET')]) {
                         sh '''
                         cd k8s/blue
-                        ./../../scripts/upload_docker.sh capstoneBlue jballantine1 $SECRET
+                        ./../../scripts/upload_docker.sh blue jballantine1 $SECRET
                         '''
                     }
                 }
@@ -43,7 +43,7 @@ pipeline {
                     withCredentials([string(credentialsId: 'dockerCreds', variable: 'SECRET')]) {
                         sh '''
                         cd k8s/green
-                        ./../../scripts/upload_docker.sh capstoneGreen jballantine1 $SECRET
+                        ./../../scripts/upload_docker.sh green jballantine1 $SECRET
                         '''
                     }
                 }
