@@ -52,8 +52,8 @@ pipeline {
             stage('Create Cluster') {
                 steps {
                     withAWS(region: 'us-east-1', credentials: 'aws-credentials') {
-                        sh 'echo Skipping'
-                        # sh '''
+                        sh '''
+                        echo Skipping
                         # eksctl create cluster \
                         # --name capstone \
                         # --region us-east-1 \
@@ -67,7 +67,7 @@ pipeline {
                         # --nodes 2 \
                         # --nodes-min 1 \
                         # --nodes-max 3 \
-                        # '''
+                        '''
                     }
                 }
             }
