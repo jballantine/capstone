@@ -22,7 +22,7 @@
             "containers":[
                {
                   "name":"green",
-                  "image":"jballantine1/capstone:green",
+                  "image":"jballantine1/capstone",
                   "ports":[
                      {
                         "name":"http-server",
