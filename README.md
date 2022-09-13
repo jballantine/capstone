@@ -13,8 +13,8 @@
 
 ## Prerequisites
 
-All tools required for this project are listed below. I have also set up an EC2 instance (screenshot 1) which will host/communicate with these tools and essentially serve as the management centre for this project.
-- Jenkins 
+All tools required for this project are listed below. I have also set up an [EC2 instance](screenshots/screenshot1) which will host/communicate with these tools and essentially serve as the management centre for this project.
+- Jenkins (incl. Blue Ocean plugin)
 https://www.digitalocean.com/community/tutorials/how-to-install-jenkins-on-ubuntu-22-04
 - Docker
 https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04
@@ -33,4 +33,10 @@ https://stackoverflow.com/questions/62369711/how-to-install-hadolint-on-ubuntu
 - Bash
 
 
-## 
+## Application
+
+A simple Nginx "Hello World" application defined by index.html.
+
+## CI/CD Pipeline
+
+![jenkinsFullPipeline.png](screenshots/jenkinsFullPipeline.png)
