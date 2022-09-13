@@ -45,21 +45,13 @@ A simple Nginx "Hello World" application defined [here](k8s/blue/index.html) and
 
 My linting stage contains two jobs: linting the docker file using hadolint and linting the html using tidy. A successful linting job is shown [here](screenshots/lintingSuccess.jpg). A failed linting job is shown [here](screenshots/lintingFailure.jpg) and can be triggered by adding some erroneous syntax to the docker file or html file.
 
-### Stage 2 - Build Blue Image
+### Stage 2 & 3 - Build Blue/Green Image
 
-This is done by calling my [run_docker.sh](scripts/run_docker.sh) script from the blue folder with the tag name as the argument.
+This is done by calling the [run_docker.sh](scripts/run_docker.sh) script from the blue/green folder with the tag name as the argument.
 
-### Stage 3 - Build Green Image
+### Stage 4 & 5 - Push Blue/Green Image
 
-This is done by calling my [run_docker.sh](scripts/run_docker.sh) script from the green folder with the tag name as the argument.
-
-### Stage 4 - Push Blue Image
-
-This is done by calling my [upload_docker.sh](scripts/upload_docker.sh) script from the blue folder with the tag name, docker username and docker password respectively as the 3 arguments. Proof of a successful upload to the docker hub is shown [here](screenshots/dockerUpload.jpg). Also note that for this stage relies on docker [credential configuration](screenshots/jenkinsCreds.jpg) within jenkins.
-
-### Stage 5 - Push Green Image
-
-This is done by calling my [upload_docker.sh](scripts/upload_docker.sh) script from the green folder with the tag name, docker username and docker password respectively as the 3 arguments. Proof of a successful upload to the docker hub is shown [here](screenshots/dockerUpload.jpg). Also note that for this stage relies on docker [credential configuration](screenshots/jenkinsCreds.jpg) within jenkins.
+This is done by calling the [upload_docker.sh](scripts/upload_docker.sh) script from the blue/green folder with the tag name, docker username and docker password respectively as the 3 arguments. Proof of a successful upload to the docker hub is shown [here](screenshots/dockerUpload.jpg). Also note that for these stages rely on docker [credential configuration](screenshots/jenkinsCreds.jpg) within jenkins.
 
 ### Stage 6 - Create Cluster
 
@@ -69,28 +61,20 @@ Deploys the cluster using EKS and cloud formation. This stage (and the remaining
 
 Updates kubeconfig and configures kubectl from AWS EKS as shown [here](screenshots/configK8s.jpg).
 
-### Stage 8 - Deploy Blue Container
+### Stage 8 & 9 - Deploy Blue/Green Container
 
-Deploys a container using the docker image with tag=blue. Replication controller status is shown [here](screenshots/k8Resources.jpg).
+Deploys a container using the docker image with tag=blue or tag=green. Replication controller status is shown [here](screenshots/k8Resources.jpg).
 
-### Stage 9 - Deploy Green Container
+### Stage 10 & 11 - Run Blue/Green Service
 
-Deploys a container using the docker image with tag=green. Replication controller status is shown [here](screenshots/k8Resources.jpg).
-
-### Stage 10 - Run Blue Service
-
-Starts the blue service on the worker nodes. Status of services are shown [here](screenshots/k8Resources.jpg).
-
-### Stage 11 - Run Green Service
-
-Starts the green service on the worker nodes. Status of services are shown [here](screenshots/k8Resources.jpg).
+Starts the blue/green service on the worker nodes. Status of services are shown [here](screenshots/k8Resources.jpg).
 
 
 ## Testing Application
 
-The application can be tested by using the DNS Name and Port the load balancer is running on - this information is shown [here](screenshots/loadBalancer.jpg). The last stage of the Jenkins pipeline is to run the green service so we can see the "Hello World" text with the green background.
+The application can be tested by using the DNS Name and Port the load balancer is running on - this information is shown [here](screenshots/loadBalancer.jpg). The last stage of the Jenkins pipeline is to run the green service so we can see the "Hello World" text with the green background in the web browser.
 ![greenApp.jpg](screenshots/greenApp.jpg)
-This can be easily changed by manually running the "Run Blue Service" command again.
+This can be easily switched back to the blue version by running the "Run Blue Service" command.
 ```
 kubectl apply -f ./k8s/blue/blue-controller.json
 ```
