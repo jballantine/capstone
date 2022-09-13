@@ -45,21 +45,25 @@ A simple Nginx "Hello World" application defined by [index.html](index.html).
 
 My linting stage contains two jobs: linting the docker file using hadolint and linting the html using tidy. A successful linting job is shown [here](screenshots/lintingSuccess.jpg). A failed linting job is shown [here](screenshots/lintingFailure.jpg) and can be triggered by adding some erroneous syntax to the docker file or html file.
 
-### Stage 2 - Build image
+### Stage 2 - Build Image
 
 This is done by calling my [run_docker.sh](scripts/run_docker.sh) script with the tag name as the argument.
 
-### Stage 3 - Upload image
+### Stage 3 - Upload Image
 
 This is done by calling my [upload_docker.sh](scripts/upload_docker.sh) script with the tag name, docker username and docker password respectively as the 3 arguments. Proof of a successful upload to the docker hub is shown [here](screenshots/dockerUpload.jpg). Also note that for this stage relies on docker [credential configuration](screenshots/jenkinsCreds) within jenkins.
 
 ### Stage 4 - Create Cluster
 
-Deploys the cluster using EKS and cloud formation. This stage (and the remaining stages) rely on aws [credential configuration](screenshots/jenkinsCreds) within jenkins.
+Deploys the cluster using EKS and cloud formation. This stage (and the remaining stages) rely on aws [credential configuration](screenshots/jenkinsCreds) within jenkins. The cluster status is shown [here](eksCluster.jpg) and the list of nodes is shown [here](clusterNodes.jpg)
 
 ### Stage 5 - Set K8s Context
 
-Configures kubectl from AWS EKS as shown [here](screenshots/configK8s).
+Updates kubeconfig and configures kubectl from AWS EKS as shown [here](screenshots/configK8s).
 
-### Stage 6 - Deploy co
+### Stage 6-9 - Deploy Containers & Start Services
+
+These final steps create the necessary resources. The status of the pods, services and deployed application is shown here](screenshots/clusterAll.jpg). The application can be accessed via the load balancer to confirm as shown below.
+
+![accessApp.png](screenshots/accessApp.png)
 
