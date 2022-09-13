@@ -61,5 +61,5 @@ Deploys the cluster using EKS and cloud formation. This stage (and the remaining
 
 Configures kubectl from AWS EKS as shown [here](screenshots/configK8s).
 
-### Stage 6 - 
+### Stage 6 - Deploy co
 
