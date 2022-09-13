@@ -40,3 +40,5 @@ A simple Nginx "Hello World" application defined by index.html.
 ## CI/CD Pipeline
 
 ![jenkinsFullPipeline.png](screenshots/jenkinsFullPipeline.png)
+
+### Stage 1 - Linting
