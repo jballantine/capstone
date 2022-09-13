@@ -67,7 +67,7 @@ pipeline {
                         # --nodes 2 \
                         # --nodes-min 1 \
                         # --nodes-max 3 \
-                        '''
+                        # '''
                     }
                 }
             }
