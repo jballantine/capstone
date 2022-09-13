@@ -19,7 +19,9 @@ pipeline {
             
             stage('Push Image') {
                 steps {
-                    sh './scripts/upload_docker.sh capstone jballantine1 $dockerCreds'
+                    withCredentials([string(credentialsId: 'dockerCreds', variable: 'SECRET')]) {
+                        sh './scripts/upload_docker.sh capstone jballantine1 $SECRET'
+                    }
                 }
             }
             
