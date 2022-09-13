@@ -13,15 +13,13 @@ pipeline {
             
             stage('Build Image') {
                 steps {
-                        sh './scripts/run_docker.sh capstone'
+                    sh './scripts/run_docker.sh capstone'
                 }
             }
             
             stage('Push Image') {
                 steps {
-                    withCredentials([usernamePassword(credentialsId: 'dockerHub', usernameVariable: 'UNAME', passwordVariable: 'PWD')]) {
-                        sh './scripts/upload_docker.sh capstone $UNAME $PWD'
-                    }
+                    sh './scripts/upload_docker.sh capstone jballantine1 $dockerCreds'
                 }
             }
             
