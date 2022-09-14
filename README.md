@@ -63,7 +63,7 @@ Updates kubeconfig and configures kubectl from AWS EKS as shown [here](screensho
 
 ### Stage 8 & 9 - Deploy Blue/Green Container
 
-Deploys a container using the docker image with tag=blue or tag=green. Replication controller status is shown [here](screenshots/k8Resources.jpg).
+Deploys a container using the docker image with tag=blue or tag=green. Replication controller status is shown [here](screenshots/k8Resources.jpg). Jenkins output for these steps is shown [here](screenshots/deployBlue.jpg) and [here](screenshots/deployGreen.jpg).
 
 ### Stage 10 & 11 - Run Blue/Green Service
 
